@@ -13,7 +13,7 @@
     </div>
     {% for issue in issues %}
         <div class="issue">
-            <a href="{{ url_for('main.issue', slug=issue.slug) }}"><h2 class="section-title issue-{{ issue.id }}">{{ issue.name }}</h2></a>
+            <a href="{{ url_for('unbag.issue', slug=issue.slug) }}"><h2 class="section-title issue-{{ issue.id }}">{{ issue.name }}</h2></a>
         </div>
     {% endfor %}
 </div>
