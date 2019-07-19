@@ -1,4 +1,5 @@
 import config
+import random
 import sentry_sdk
 from taozi import create_app
 from taozi.models import Issue
@@ -22,6 +23,12 @@ def inject_issues():
     return dict(issues=issues,
                 get_products=app.get_products,
                 get_plans=app.get_plans)
+
+@app.template_filter('shuffle')
+def filter_shuffle(seq):
+    result = list(seq)
+    random.shuffle(result)
+    return result
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

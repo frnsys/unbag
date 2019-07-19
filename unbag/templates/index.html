@@ -10,7 +10,7 @@
                 <a href="{{ url_for('unbag.issue', slug=issue.slug) }}"><h2 class="section-title">{{ issue.name }}</h2></a>
                 <h2 class="section-subtitle"><div class="section-subtitle-contents" style="background-image:url('{{ url_for('static', filename='oval.svg') }}')">Contents</div></h2>
                 <div class="content">
-                    {% for post in issue.published_posts %}
+                    {% for post in issue.published_posts|shuffle %}
                         {{ post_item(post) }}
                     {% endfor %}
                 </div>
