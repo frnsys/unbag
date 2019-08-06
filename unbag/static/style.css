@@ -780,10 +780,22 @@ a.go-checkout:hover {
 }
 
 .store, .store .shop {
-  background: #48a4d8;
+  /* background: #48a4d8; */
+  background: #fff;
 }
 .store--product {
   background: #fff;
+}
+.store--subnav {
+  padding: 0.75em 1em;
+  text-align: right;
+}
+.store--subnav img {
+  width: 16px;
+  vertical-align: middle;
+}
+.store--subnav a {
+  color: black;
 }
 
 @media only screen and (max-width: 640px) {

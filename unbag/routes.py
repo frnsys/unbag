@@ -32,11 +32,11 @@ def events():
 
 @bp.route('/donate')
 def donate():
-    return redirect('https://fundraising.fracturedatlas.org/unbag/campaigns/2655')
+    return redirect('https://fundraising.fracturedatlas.org/unbag')
     # issues = Issue.query.filter(Issue.name!='Programs', Issue.published).order_by(Issue.id.asc()).all()
     # return render_template('donate.html', current_issue=issues[-1], issues=issues)
 
-@bp.route('/store')
+@bp.route('/store/soon')
 def shop_temp():
     issues = Issue.query.filter(Issue.name!='Programs', Issue.published).order_by(Issue.id.asc()).all()
     return render_template('shop_temp.html', current_issue=issues[-1], issues=issues)

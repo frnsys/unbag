@@ -88,6 +88,12 @@
     <main>
         {{ header() }}
         {{ header(shadow=True) }}
+        {% if 'shop' in request.endpoint %}
+            <div class="store--subnav">
+                {% set cart_img = 'cart-full.png' if session.get('cart', {}) else 'cart-empty.png' %}
+                <a href="{{ url_for('shop.cart') }}">cart <img src="{{ url_for('static', filename=cart_img) }}"></a>
+            </div>
+        {% endif %}
         {% block content %}
         {% endblock %}
         <div class="about">
