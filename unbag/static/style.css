@@ -773,15 +773,18 @@ a.go-checkout:hover {
 .cart a.go-checkout:hover {
   background: #eee;
 }
+.cart input[type="submit"] {
+  background: none;
+}
 
 .thanks {
   margin: 6em auto 3em auto;
   text-align: center;
 }
 
-.store, .store .shop {
-  /* background: #48a4d8; */
-  background: #fff;
+.store, .store .shop,
+.cart tr:last-child, .checkout tr:last-child {
+  background: #48a4d8;
 }
 .store--product {
   background: #fff;
