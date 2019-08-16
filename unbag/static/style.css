@@ -777,6 +777,13 @@ a.go-checkout:hover {
   background: none;
 }
 
+.checkout--warning,
+.checkout--error {
+  color: #fff;
+  font-weight: bold;
+  margin: 0 0 1em 0;
+}
+
 .thanks {
   margin: 6em auto 3em auto;
   text-align: center;
