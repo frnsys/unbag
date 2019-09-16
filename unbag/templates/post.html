@@ -4,15 +4,15 @@
 {% block meta %}
   <meta property="og:site_name" content="unbag">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ post.title }}">
+  <meta property="og:title" content="{{ current_post.title }}">
   <meta property="og:url" content="{{ request.url }} ">
-  <meta property="og:image" content="{{ post.image.url }}" />
-  <meta property="og:description" content="{{ post.subtitle }}">
+  <meta property="og:image" content="{{ current_post.image.url }}" />
+  <meta property="og:description" content="{{ current_post.subtitle }}">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@unbagnyc">
-  <meta name="twitter:title" content="{{ post.title }}">
-  <meta name="twitter:image" content="{{ post.image.url }}" />
-  <meta name="twitter:description" content="{{ post.subtitle }}">
+  <meta name="twitter:title" content="{{ current_post.title }}">
+  <meta name="twitter:image" content="{{ current_post.image.url }}" />
+  <meta name="twitter:description" content="{{ current_post.subtitle }}">
 {% endblock %}
 
 {% block content %}
