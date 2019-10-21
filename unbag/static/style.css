@@ -809,7 +809,7 @@ a.go-checkout:hover {
 }
 
 /* sticky header anchor fix for footnotes */
-li[id^="fn"] {
+li[id^="fn"], sup[id^="fn"]{
   padding-top: 48px;
   margin-top: -48px;
 }
