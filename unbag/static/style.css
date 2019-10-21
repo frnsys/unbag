@@ -808,6 +808,12 @@ a.go-checkout:hover {
   color: black;
 }
 
+/* sticky header anchor fix for footnotes */
+li[id^="fn"] {
+  padding-top: 48px;
+  margin-top: -48px;
+}
+
 @media only screen and (max-width: 640px) {
   .issue--post {
     width: 100%;
