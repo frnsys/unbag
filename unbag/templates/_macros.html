@@ -24,6 +24,8 @@
     <div class="issue--post" style="margin-top: {{range(-4, 12)|random}}em;margin-left: {{[0,0,2,4]|random}}%;margin-right: {{[2,2,4]|random}}%;width:{{[240, 280, 280, 320, 320, 440]|random}}px">
         {% if post.print_only %}
             <a href="{{ post.issue.store_url }}">
+        {% elif post.redirect %}
+            <a href="{{ post.redirect }}">
         {% else %}
             <a href="{{ url_for('unbag.post', slug=post.slug, issue=post.issue.slug) }}">
         {% endif %}
@@ -45,6 +47,8 @@
         </a>
         {% if post.print_only %}
             <a href="{{ post.issue.store_url }}">
+        {% elif post.redirect %}
+            <a href="{{ post.redirect }}">
         {% else %}
             <a href="{{ url_for('unbag.post', slug=post.slug, issue=post.issue.slug) }}">
         {% endif %}
