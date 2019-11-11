@@ -20,6 +20,8 @@ def post(issue, slug):
     post = Post.query.filter(Post.slug==slug, Post.issue.has(slug=issue)).first_or_404()
     if not post.published and not current_user.is_authenticated:
         abort(404)
+    if post.redirect:
+        return redirect(post.redirect)
     issues = Issue.query.filter(Issue.name!='Programs', Issue.published).order_by(Issue.id.desc()).all()
     return render_template('post.html', current_issue=post.issue, current_post=post, issues=issues)
 
