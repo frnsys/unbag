@@ -21,8 +21,7 @@ def inject_issues():
     """Inject issues into all templates"""
     issues = Issue.query.filter(Issue.name!='Programs', Issue.published).order_by(Issue.id.desc()).all()
     return dict(issues=issues,
-                get_products=app.get_products,
-                get_plans=app.get_plans)
+                get_products=app.get_products)
 
 @app.template_filter('shuffle')
 def filter_shuffle(seq):
