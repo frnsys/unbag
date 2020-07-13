@@ -4,7 +4,8 @@
 {% block content %}
 <div class="product">
     <div class="product--gallery">
-        {% for img in images[1:] %}
+        {% set images = images or [product.metadata.image] %}
+        {% for img in (images[1:] if images|length > 1 else images)%}
             <figure>
                 <img src="{{ img }}" />
             </figure>
@@ -12,12 +13,13 @@
     </div>
     <div class="product--info">
         <h1>{{ product.name }}</h1>
-        <p>{{ product.description|safe }}</p>
+        <p>{{ (product.description or product.metadata.description)|safe }}</p>
         <div class="product--skus">
             {% for sku in skus %}
                 <div class="product--sku">
                     <form action='{{ url_for('shop.cart') }}' method='POST'>
                         <input type='hidden' name='sku' value={{ sku.id }}>
+                        <input type='hidden' name='product' value={{ product.id }}>
                         <input type='hidden' name='name' value='{{ product.name }} - {{ sku.attributes.values()|join(', ') }}'>
                         <div class="sku">
                             <div>
@@ -29,6 +31,36 @@
                             {% else %}
                                 <input type="submit" disabled value='Out of Stock'>
                             {% endif %}
+                        </div>
+                    </form>
+                </div>
+            {% endfor %}
+
+            {% for price in prices %}
+                <div class="product--sku">
+                    <form action='{{ url_for('shop.subscribe' if price.recurring else 'shop.cart') }}' method='POST'>
+                        <input type='hidden' name='sku' value={{ price.id }}>
+                        <input type='hidden' name='product' value={{ product.id }}>
+                        {% if price.nickname %}
+                            <input type='hidden' name='name' value='{{ product.name }} - {{ price.nickname }}'>
+                        {% else %}
+                            <input type='hidden' name='name' value='{{ product.name }}'>
+                        {% endif %}
+                        {% if price.recurring %}
+                            <input type='hidden' name='price' value='{{ '${:,.2f}'.format(price.unit_amount/100) }}/{% if price.recurring.interval_count > 1 %}{{ price.recurring.interval_count }} {% endif %}{{ price.recurring.interval }}{% if price.recurring.interval_count > 1 %}s{% endif %}'>
+                        {% else %}
+                            <input type='hidden' name='price' value='{{ '${:,.2f}'.format(price.unit_amount/100) }}'>
+                        {% endif %}
+                        <div class="sku">
+                            <div>
+                                <div class="sku--name">{{ price.nickname or product.name }}</div>
+                                {% if price.recurring %}
+                                    <div class="sku--price">{{ '${:,.2f}'.format(price.unit_amount/100) }}/{% if price.recurring.interval_count > 1 %}{{ price.recurring.interval_count }} {% endif %}{{ price.recurring.interval }}{% if price.recurring.interval_count > 1 %}s{% endif %}</div>
+                                {% else %}
+                                    <div class="sku--price">{{ '${:,.2f}'.format(price.unit_amount/100) }}</div>
+                                {% endif %}
+                            </div>
+                            <input type="submit" value='{{ 'Subscribe' if price.recurring else 'Purchase' }}'>
                         </div>
                     </form>
                 </div>
